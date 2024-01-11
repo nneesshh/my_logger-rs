@@ -6,6 +6,12 @@ type SinkVec = Vec<std::sync::Arc<dyn spdlog::sink::Sink>>;
 
 pub use spdlog::Level as LogLevel;
 
+/// Get current thread id
+#[inline(always)]
+pub fn get_current_tid() -> u64 {
+    spdlog::get_current_tid()
+}
+
 /// Initialize logger
 pub fn init(path: &std::path::PathBuf, name: &str, level: u16, log_to_console: bool) {
     static INIT: std::sync::Once = std::sync::Once::new();
